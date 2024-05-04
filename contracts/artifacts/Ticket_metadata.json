@@ -42,7 +42,46 @@
 			},
 			{
 				"inputs": [],
+				"name": "getOwner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getSeatNumber",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "isAvailable",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "isTicketAvailable",
 				"outputs": [
 					{
 						"internalType": "bool",
@@ -121,11 +160,19 @@
 	},
 	"sources": {
 		"contracts/Ticket.sol": {
-			"keccak256": "0x5ad00b1f7bfc0f52a110808425c70167ab669bb699a1d556f583eab9b5af5fe3",
+			"keccak256": "0xfdda7d595756e8bdeea518200454055f8641540f4dead9dfba309c9e5fc868f4",
 			"license": "Unlicense",
 			"urls": [
-				"bzz-raw://735d766bbdb98a7872d07fa68f677f4b613518a43ae58b295139400c2f42414b",
-				"dweb:/ipfs/QmeDkabMa74NwaTJhg6iJtZBwSHdXY368W2oXG9pSZJPye"
+				"bzz-raw://c83c7c483528c53ffc5366f5fe45799a9813ace68fe4b2b113114b68613afa6d",
+				"dweb:/ipfs/QmTb2w3fMFjq9BS5FHauM1Ui8Xo8LQUzM3VGPmMoys7MNf"
+			]
+		},
+		"interfaces/ITicket.sol": {
+			"keccak256": "0x92a886a13097b1a8f01e10911027df7f43c7a14ad65d928e96ff43b4bf797aa0",
+			"license": "Unlicense",
+			"urls": [
+				"bzz-raw://c19be1aa995630d49f1bc335ef2f607692d44f6d275f5ec33b8b42f2f629da9f",
+				"dweb:/ipfs/QmbuyLTwnX9cHL6eAosv9Gt6upR6CYsR3EqiDrda372i6v"
 			]
 		}
 	},

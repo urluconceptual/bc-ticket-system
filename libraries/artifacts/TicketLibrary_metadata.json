@@ -1,0 +1,45 @@
+{
+	"compiler": {
+		"version": "0.8.25+commit.b61c2a91"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"libraries/TicketLibrary.sol": "TicketLibrary"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"libraries/TicketLibrary.sol": {
+			"keccak256": "0xa1223aca802e4fbd81d56e8ed93f52ef7f51ffafacb7df13c69d7a7ad9ef94ac",
+			"license": "Unlicense",
+			"urls": [
+				"bzz-raw://be43278433e5856e76618a5977efdb1f3f7defb7dc62675c24d7e98b79aa5323",
+				"dweb:/ipfs/QmWJJvmT8azsRuZ9WnUfokYZvTYXw4W8Pks6EW5c5fY59r"
+			]
+		}
+	},
+	"version": 1
+}

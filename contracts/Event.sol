@@ -2,6 +2,8 @@
 pragma solidity ^0.8.0;
 
 import "./Ticket.sol";
+import "../libraries/TicketLibrary.sol";
+
 
 contract EventManager {
     address public organizer;
@@ -13,6 +15,7 @@ contract EventManager {
     Ticket[] public tickets;
 
     event TicketsSold(uint indexed eventId, uint quantity);
+    event FundsWithdrawn(address indexed organizer, uint amount);
     mapping(address => uint[]) ticketsOfUser;
 
     constructor(uint _eventId, string memory _eventName, uint _totalTickets, uint _price) {
@@ -29,12 +32,8 @@ contract EventManager {
         _;
     }
 
-    function calculateTotalPrice(uint _quantity, uint _price) public pure returns (uint) {
-        return _quantity * _price;
-    }
-
     function sellTickets(uint _quantity) external payable onlyOrganizer {
-        uint256 totalPrice = calculateTotalPrice(_quantity, price);
+        uint256 totalPrice = TicketLibrary.calculateTotalPrice(_quantity, price);
         require(msg.value >= totalPrice, "Insufficient payment");
         require(tickets.length + _quantity <= totalTickets, "Not enough tickets available");
 
@@ -65,4 +64,15 @@ contract EventManager {
         
         return tickets[_ticketIndex].owner();
     }
+
+    receive() external payable {}
+
+    function withdrawFunds() external onlyOrganizer {
+        uint balance = address(this).balance;
+        require(balance > 0, "No funds available for withdrawal");
+        
+        payable(organizer).transfer(balance);
+        emit FundsWithdrawn(organizer, balance);
+    }
+
 }
