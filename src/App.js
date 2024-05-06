@@ -1,8 +1,10 @@
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { ethers } from "ethers";
 import { useEffect, useState } from "react";
+import EventManager from "./abis/EventManager.json";
 import "./App.css";
 import Navbar from "./components/Navbar";
+import config from "./config.json";
 
 const THEME = createTheme({
   typography: {
@@ -11,7 +13,6 @@ const THEME = createTheme({
 });
 
 function App() {
-  const [account, setAccount] = useState(null);
   const [provider, setProvider] = useState(null);
   const [eventManager, setEventManager] = useState(null);
 
@@ -20,7 +21,14 @@ function App() {
     setProvider(provider);
 
     const network = await provider.getNetwork();
-    //const eventManager = new ethers.Contract(config[network.chainId].dappazon.address, provider)
+    const eventManager = new ethers.Contract(
+      config[network.chainId].eventManager.address,
+      EventManager,
+      provider
+    );
+
+    const events = await eventManager.getEvents();
+    console.log(events);
   };
 
   useEffect(() => {
@@ -30,7 +38,7 @@ function App() {
   return (
     <div className="App">
       <ThemeProvider theme={THEME}>
-        <Navbar account={account} setAccount={setAccount}></Navbar>
+        <Navbar />
         <header className="App-header">Welcome to dappevents!</header>
       </ThemeProvider>
     </div>

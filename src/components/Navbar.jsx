@@ -4,14 +4,16 @@ import Button from "@mui/material/Button";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { ethers } from "ethers";
+import { observer } from "mobx-react";
+import { eventManagerStore } from "../stores/EventManagerStore";
 
-export default function Navbar({ account, setAccount }) {
+const Navbar = observer(() => {
   const connectHandler = async () => {
     const accounts = await window.ethereum.request({
       method: "eth_requestAccounts",
     });
     const account = ethers.getAddress(accounts[0]);
-    setAccount(account);
+    eventManagerStore.setAccount(account);
   };
 
   return (
@@ -26,8 +28,8 @@ export default function Navbar({ account, setAccount }) {
           <Typography variant="h6" component="div">
             DappEvents
           </Typography>
-          {account ? (
-            <Button color="inherit">{account}</Button>
+          {eventManagerStore.account ? (
+            <Button color="inherit">{eventManagerStore.account}</Button>
           ) : (
             <Button onClick={connectHandler} color="inherit">
               Login
@@ -37,4 +39,6 @@ export default function Navbar({ account, setAccount }) {
       </AppBar>
     </Box>
   );
-}
+});
+
+export default Navbar;
