@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { ethers } from "ethers";
+import { useEffect, useState } from "react";
+import "./App.css";
+import Navbar from "./components/Navbar";
+
+const THEME = createTheme({
+  typography: {
+    fontFamily: `"Roboto Mono", sans-serif`,
+  },
+});
 
 function App() {
+  const [account, setAccount] = useState(null);
+  const [provider, setProvider] = useState(null);
+  const [eventManager, setEventManager] = useState(null);
+
+  const loadData = async () => {
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    setProvider(provider);
+
+    const network = await provider.getNetwork();
+    //const eventManager = new ethers.Contract(config[network.chainId].dappazon.address, provider)
+  };
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ThemeProvider theme={THEME}>
+        <Navbar account={account} setAccount={setAccount}></Navbar>
+        <header className="App-header">Welcome to dappevents!</header>
+      </ThemeProvider>
     </div>
   );
 }

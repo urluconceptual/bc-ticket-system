@@ -1,90 +1,52 @@
 // SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.0;
 
-import "./interfaces/ITicket.sol";
-import "./libraries/TicketLibrary.sol";
+import "./interfaces/IEvent.sol";
+import "./Event.sol";
 
 contract EventManager {
-    address public organizer;
-    uint public eventId;
-    string public eventName;
-    uint public totalTickets;
-    uint public ticketsSold;
-    uint public price;
-    ITicket[] public tickets;
+    address private owner;
+    IEvent[] public events;
 
-    event TicketsSold(uint indexed eventId, uint quantity);
-    event FundsWithdrawn(address indexed organizer, uint amount);
-    mapping(address => uint[]) ticketsOfUser;
+    event EventCreated(
+        uint indexed eventId,
+        string eventName,
+        uint totalTickets,
+        uint price
+    );
 
-    constructor(
+    constructor() {
+        owner = msg.sender;
+    }
+
+    function getOwner() external view returns (address) {
+        return owner;
+    }
+
+    function createEvent(
         uint _eventId,
         string memory _eventName,
         uint _totalTickets,
         uint _price
-    ) {
-        organizer = msg.sender;
-        eventId = _eventId;
-        eventName = _eventName;
-        totalTickets = _totalTickets;
-        price = _price;
-        ticketsSold = 0;
+    ) external {
+        IEvent newEvent = new Event(
+            _eventId,
+            _eventName,
+            _totalTickets,
+            _price,
+            msg.sender
+        );
+        events.push(newEvent);
+        emit EventCreated(_eventId, _eventName, _totalTickets, _price);
     }
 
-    modifier onlyOrganizer() {
-        require(
-            msg.sender == organizer,
-            "Only the organizer can perform this action"
+    function getEvents() external view returns (IEvent.EventInfo[] memory) {
+        IEvent.EventInfo[] memory eventInfos = new IEvent.EventInfo[](
+            events.length
         );
-        _;
-    }
-
-    function sellTickets(uint _quantity) external payable onlyOrganizer {
-        uint256 totalPrice = TicketLibrary.calculateTotalPrice(
-            _quantity,
-            price
-        );
-        require(msg.value >= totalPrice, "Insufficient payment");
-        require(
-            tickets.length + _quantity <= totalTickets,
-            "Not enough tickets available"
-        );
-
-        for (uint256 i = 0; i < _quantity; i++) {
-            ITicket ticket = tickets[ticketsSold + i];
-            ticket.transfer(msg.sender);
-            ticketsOfUser[msg.sender].push(ticketsSold + i);
+        for (uint i = 0; i < events.length; i++) {
+            eventInfos[i] = events[i].getEventInfo();
         }
-
-        ticketsSold += _quantity;
-        emit TicketsSold(eventId, _quantity);
-    }
-
-    function transferTicket(uint _ticketIndex, address _newOwner) external {
-        require(_ticketIndex < tickets.length, "Invalid ticket index");
-
-        ITicket ticket = tickets[_ticketIndex];
-        ticket.transfer(_newOwner);
-        ticketsOfUser[_newOwner].push(_ticketIndex);
-    }
-
-    function getAvailableTickets() public view returns (uint) {
-        return totalTickets - ticketsSold;
-    }
-
-    function getTicketOwner(uint _ticketIndex) public view returns (address) {
-        require(_ticketIndex < tickets.length, "Invalid ticket index");
-
-        return tickets[_ticketIndex].getOwner();
-    }
-
-    receive() external payable {}
-
-    function withdrawFunds() external onlyOrganizer {
-        uint balance = address(this).balance;
-        require(balance > 0, "No funds available for withdrawal");
-
-        payable(organizer).transfer(balance);
-        emit FundsWithdrawn(organizer, balance);
+        return eventInfos;
     }
 }

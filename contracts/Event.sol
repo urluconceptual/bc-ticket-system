@@ -2,9 +2,10 @@
 pragma solidity ^0.8.0;
 
 import "./interfaces/ITicket.sol";
+import "./interfaces/IEvent.sol";
 import "./libraries/TicketLibrary.sol";
 
-contract Event {
+contract Event is IEvent {
     address public organizer;
     uint public eventId;
     string public eventName;
@@ -21,9 +22,10 @@ contract Event {
         uint _eventId,
         string memory _eventName,
         uint _totalTickets,
-        uint _price
+        uint _price,
+        address _organizer
     ) {
-        organizer = msg.sender;
+        organizer = _organizer;
         eventId = _eventId;
         eventName = _eventName;
         totalTickets = _totalTickets;
@@ -86,5 +88,17 @@ contract Event {
 
         payable(organizer).transfer(balance);
         emit FundsWithdrawn(organizer, balance);
+    }
+
+    function getEventInfo() external view returns (EventInfo memory) {
+        return
+            EventInfo({
+                organizer: organizer,
+                eventId: eventId,
+                eventName: eventName,
+                totalTickets: totalTickets,
+                ticketsSold: ticketsSold,
+                price: price
+            });
     }
 }
