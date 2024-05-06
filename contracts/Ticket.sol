@@ -1,15 +1,18 @@
 // SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.0;
 
-import "../interfaces/ITicket.sol";
-import "../libraries/TicketLibrary.sol";
+import "./interfaces/ITicket.sol";
+import "./libraries/TicketLibrary.sol";
 
 contract Ticket is ITicket {
     address public owner;
     uint public seatNumber;
     bool public isAvailable;
 
-    event TicketTransferred(address indexed previousOwner, address indexed newOwner);
+    event TicketTransferred(
+        address indexed previousOwner,
+        address indexed newOwner
+    );
 
     constructor(address _owner, uint _seatNumber) {
         owner = _owner;

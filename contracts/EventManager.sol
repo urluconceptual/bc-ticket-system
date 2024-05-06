@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 import "./interfaces/ITicket.sol";
 import "./libraries/TicketLibrary.sol";
 
-contract Event {
+contract EventManager {
     address public organizer;
     uint public eventId;
     string public eventName;
