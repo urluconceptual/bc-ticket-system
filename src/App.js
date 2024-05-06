@@ -1,10 +1,8 @@
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { ethers } from "ethers";
-import { useEffect, useState } from "react";
-import EventManager from "./abis/EventManager.json";
+import { useEffect } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
-import config from "./config.json";
+import { eventManagerStore } from "./stores/EventManagerStore";
 
 const THEME = createTheme({
   typography: {
@@ -13,26 +11,8 @@ const THEME = createTheme({
 });
 
 function App() {
-  const [provider, setProvider] = useState(null);
-  const [eventManager, setEventManager] = useState(null);
-
-  const loadData = async () => {
-    const provider = new ethers.BrowserProvider(window.ethereum);
-    setProvider(provider);
-
-    const network = await provider.getNetwork();
-    const eventManager = new ethers.Contract(
-      config[network.chainId].eventManager.address,
-      EventManager,
-      provider
-    );
-
-    const events = await eventManager.getEvents();
-    console.log(events);
-  };
-
   useEffect(() => {
-    loadData();
+    eventManagerStore.loadEvents();
   }, []);
 
   return (
