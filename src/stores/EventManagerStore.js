@@ -7,6 +7,7 @@ class EventManagerStore {
   account = null;
   events = [];
   provider = null;
+  activePage = "events";
 
   constructor() {
     makeObservable(this, {
@@ -15,6 +16,7 @@ class EventManagerStore {
       loadEvents: action,
       events: observable,
       provider: observable,
+      activePage: observable,
     });
   }
 

@@ -1,7 +1,7 @@
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "./App.css";
-import EventList from "./components/EventList";
 import Navbar from "./components/Navbar";
+import PageContent from "./components/PageContent";
 
 const THEME = createTheme({
   typography: {
@@ -14,7 +14,7 @@ function App() {
     <div className="App">
       <ThemeProvider theme={THEME}>
         <Navbar />
-        <EventList />
+        <PageContent />
       </ThemeProvider>
     </div>
   );
