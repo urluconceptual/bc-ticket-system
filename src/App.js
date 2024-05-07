@@ -1,8 +1,7 @@
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useEffect } from "react";
 import "./App.css";
+import EventList from "./components/EventList";
 import Navbar from "./components/Navbar";
-import { eventManagerStore } from "./stores/EventManagerStore";
 
 const THEME = createTheme({
   typography: {
@@ -11,15 +10,11 @@ const THEME = createTheme({
 });
 
 function App() {
-  useEffect(() => {
-    eventManagerStore.loadEvents();
-  }, []);
-
   return (
     <div className="App">
       <ThemeProvider theme={THEME}>
         <Navbar />
-        <header className="App-header">Welcome to dappevents!</header>
+        <EventList />
       </ThemeProvider>
     </div>
   );

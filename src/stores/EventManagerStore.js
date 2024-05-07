@@ -32,8 +32,19 @@ class EventManagerStore {
       this.provider
     );
 
-    const events = await eventManager.getEvents();
-    console.log(events);
+    await eventManager.getEvents().then((events) => {
+      this.events = [];
+      events.forEach((event) => {
+        this.events.push({
+          organizer: event.organizer,
+          eventId: event.eventId,
+          eventName: event.eventName,
+          totalTickets: event.totalTickets.toString(),
+          ticketsSold: event.ticketsSold.toString(),
+          price: ethers.formatUnits(event.price.toString(), "ether"),
+        });
+      });
+    });
   };
 }
 
