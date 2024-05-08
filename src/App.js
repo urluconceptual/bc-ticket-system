@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "./App.css";
 import Navbar from "./components/Navbar";
@@ -14,7 +15,9 @@ function App() {
     <div className="App">
       <ThemeProvider theme={THEME}>
         <Navbar />
-        <PageContent />
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <PageContent />
+        </Box>
       </ThemeProvider>
     </div>
   );

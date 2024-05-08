@@ -1,4 +1,4 @@
-import { Box, Card, CardContent } from "@mui/material";
+import { Box, Button, Card, CardContent } from "@mui/material";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Typography from "@mui/material/Typography";
@@ -14,7 +14,10 @@ const MyAccount = observer(() => {
   const loadListItem = (event) => {
     console.log("loading", event);
     return (
-      <ListItem alignItems="flex-start">
+      <ListItem
+        alignItems="flex-start"
+        sx={{ paddingLeft: 0, paddingRight: 0 }}
+      >
         <Card sx={{ width: "100%" }}>
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
@@ -58,6 +61,7 @@ const MyAccount = observer(() => {
           .filter((event) => event.organizer === eventManagerStore.account)
           .map((event) => loadListItem(event))}
       </List>
+      <Button variant="contained">Create event</Button>
     </>
   );
 });
