@@ -13,9 +13,6 @@ const THEME = createTheme({
 });
 
 function App() {
-  useEffect(() => {
-    eventManagerStore.initializeProvider();
-  });
 
   return (
     <div className="App">

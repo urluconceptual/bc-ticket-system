@@ -29,6 +29,18 @@ const modalStyle = {
 const MyAccount = observer(() => {
   const [openCreateForm, setOpenCreateForm] = useState(false);
 
+  const [eventName, setEventName] = useState("");
+  const [price, setPrice] = useState("");
+  const [numberOfTickets, setNumberOfTickets] = useState("");
+
+  const handleCreateEvent = async () => {
+    
+    console.log(eventName, parseInt(numberOfTickets), parseInt(price)); 
+
+    await eventManagerStore.createEvent(eventName, parseInt(numberOfTickets), parseInt(price));
+    setOpenCreateForm(false);
+  };
+
   useEffect(() => {
     eventManagerStore.loadEvents();
   }, []);
@@ -58,7 +70,7 @@ const MyAccount = observer(() => {
               >
                 Available tickets:{" "}
                 {(
-                  parseInt(event.totalTickets) - parseInt(event.tickesSold) || 0
+                  parseInt(event.totalTickets) - parseInt(event.ticketsSold) || 0
                 ).toString()}
                 /{event.totalTickets}
               </Typography>
@@ -98,19 +110,30 @@ const MyAccount = observer(() => {
           <FormControl
             sx={{ display: "flex", flexDirection: "column", rowGap: 2 }}
           >
-            <TextField required id="outlined-required" label="Name" />
             <TextField
               required
-              id="outlined-required"
+              id="event-name"
+              label="Name"
+              value={eventName}
+              onChange={(e) => setEventName(e.target.value)}
+            />
+            <TextField
+              required
+              id="price"
               label="Price"
               type="number"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
             />
             <TextField
               required
-              id="outlined-required"
+              id="number-of-tickets"
               label="Number of tickets"
               type="number"
+              value={numberOfTickets}
+              onChange={(e) => setNumberOfTickets(e.target.value)}
             />
+            <Button variant="contained" onClick={handleCreateEvent}>Create Event</Button>
           </FormControl>
         </Box>
       </Modal>

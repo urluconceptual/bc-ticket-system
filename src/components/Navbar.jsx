@@ -18,7 +18,7 @@ const options = [
     <ListItemIcon>
       <Face fontSize="small" />
     </ListItemIcon>
-    <ListItemText>My accout</ListItemText>
+    <ListItemText>My account</ListItemText>
   </>,
   <>
     <ListItemIcon>
@@ -86,7 +86,7 @@ const Navbar = observer(() => {
           {eventManagerStore.account ? (
             <>
               <Button color="inherit" onClick={handleClickMenuButton}>
-                {eventManagerStore.account}
+                {eventManagerStore.account.slice(0, 6) + '...' + eventManagerStore.account.slice(38, 42)  }
               </Button>
               <Menu
                 id="lock-menu"
@@ -100,7 +100,7 @@ const Navbar = observer(() => {
               >
                 {options.map((option, index) => (
                   <MenuItem
-                    key={option}
+                    key={index}
                     onClick={(event) => handleMenuItemClick(event, index)}
                   >
                     {option}
