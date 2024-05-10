@@ -8,9 +8,11 @@ class EventManagerStore {
   events = [];
   provider = null;
   activePage = "events";
+  eventManager = null;
 
   constructor() {
     makeObservable(this, {
+      initializeProvider: action,
       account: observable,
       setAccount: action,
       loadEvents: action,
@@ -24,17 +26,19 @@ class EventManagerStore {
     this.account = accountAddress;
   };
 
-  loadEvents = async () => {
+  initializeProvider = async () => {
     this.provider = new ethers.BrowserProvider(window.ethereum);
 
     const network = await this.provider.getNetwork();
-    const eventManager = new ethers.Contract(
+    this.eventManager = new ethers.Contract(
       config[network.chainId].eventManager.address,
       EventManager,
       this.provider
     );
+  };
 
-    await eventManager.getEvents().then((events) => {
+  loadEvents = async () => {
+    await this.eventManager.getEvents().then((events) => {
       this.events = [];
       events.forEach((event) => {
         this.events.push({

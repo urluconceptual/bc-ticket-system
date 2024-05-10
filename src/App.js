@@ -1,8 +1,10 @@
 import { Box } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useEffect } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import PageContent from "./components/PageContent";
+import { eventManagerStore } from "./stores/EventManagerStore";
 
 const THEME = createTheme({
   typography: {
@@ -11,6 +13,10 @@ const THEME = createTheme({
 });
 
 function App() {
+  useEffect(() => {
+    eventManagerStore.initializeProvider();
+  });
+
   return (
     <div className="App">
       <ThemeProvider theme={THEME}>
