@@ -1,0 +1,74 @@
+{
+  "tickets": [
+    {
+      "id": 1,
+      "name": "Avengers: Endgame Premiere",
+      "category": "cinema",
+      "price": "0.02",
+      "stock": 100
+    },
+    {
+      "id": 2,
+      "name": "Harry Potter and the Philosopher's Stone",
+      "category": "cinema",
+      "price": "0.015",
+      "stock": 50
+    },
+    {
+      "id": 3,
+      "name": "The Lion King Musical",
+      "category": "theatre",
+      "price": "0.025",
+      "stock": 80
+    },
+    {
+      "id": 4,
+      "name": "Jurassic Park Movie Night",
+      "category": "cinema",
+      "price": "0.018",
+      "stock": 60
+    },
+    {
+      "id": 5,
+      "name": "Romeo and Juliet",
+      "category": "theatre",
+      "price": "0.022",
+      "stock": 70
+    },
+    {
+      "id": 6,
+      "name": "Frozen 2 Premiere",
+      "category": "cinema",
+      "price": "0.021",
+      "stock": 90
+    },
+    {
+      "id": 7,
+      "name": "The Phantom of the Opera",
+      "category": "theatre",
+      "price": "0.028",
+      "stock": 65
+    },
+    {
+      "id": 8,
+      "name": "Star Wars: The Force Awakens",
+      "category": "cinema",
+      "price": "0.017",
+      "stock": 55
+    },
+    {
+      "id": 9,
+      "name": "Hamlet",
+      "category": "theatre",
+      "price": "0.023",
+      "stock": 75
+    },
+    {
+      "id": 10,
+      "name": "Toy Story 4 Premiere",
+      "category": "cinema",
+      "price": "0.019",
+      "stock": 85
+    }
+  ]
+}

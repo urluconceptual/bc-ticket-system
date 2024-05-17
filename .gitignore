@@ -22,20 +22,44 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-node_modules
-.env
+# Node modules and environment files for version1.0
+/version1.0/node_modules
+/version1.0/.env
+/version1.0/.pnp
+/version1.0/.pnp.js
 
-# Hardhat files
-/cache
-/artifacts
+# Hardhat files for version1.0
+/version1.0/cache
+/version1.0/artifacts
 
-# TypeChain files
-/typechain
-/typechain-types
+# TypeChain files for version1.0
+/version1.0/typechain
+/version1.0/typechain-types
 
-# solidity-coverage files
-/coverage
-/coverage.json
+# solidity-coverage files for version1.0
+/version1.0/coverage
+/version1.0/coverage.json
 
-# Hardhat Ignition default folder for deployments against a local node
-ignition/deployments/chain-31337
+# Hardhat Ignition default folder for deployments against a local node for version1.0
+/version1.0/ignition/deployments/chain-31337
+
+# Node modules and environment files for version2.0
+/version2.0/node_modules
+/version2.0/.env
+/version2.0/.pnp
+/version2.0/.pnp.js
+
+# Hardhat files for version2.0
+/version2.0/cache
+/version2.0/artifacts
+
+# TypeChain files for version2.0
+/version2.0/typechain
+/version2.0/typechain-types
+
+# solidity-coverage files for version2.0
+/version2.0/coverage
+/version2.0/coverage.json
+
+# Hardhat Ignition default folder for deployments against a local node for version2.0
+/version2.0/ignition/deployments/chain-31337
