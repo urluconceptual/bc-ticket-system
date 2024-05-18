@@ -77,7 +77,9 @@ contract Tickets is ITickets {
         require(success);
     }
 
-    function getTicketById(uint256 _id) public view returns (Ticket memory) {
+    function getTicketById(
+        uint256 _id
+    ) public view returns (ITickets.Ticket memory) {
         require(tickets[_id].id != 0, "Ticket does not exist");
         return tickets[_id];
     }
