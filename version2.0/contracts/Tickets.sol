@@ -1,7 +1,9 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.9;
 
-contract Tickets {
+import "./interfaces/ITickets.sol"; 
+
+contract Tickets is ITickets{
     address public owner;
 
     struct Ticket {
