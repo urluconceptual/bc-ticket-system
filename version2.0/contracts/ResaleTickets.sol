@@ -1,11 +1,12 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.9;
 
+import "./interfaces/ITickets.sol";
 import "./Tickets.sol";
 
 contract TicketResale {
     address seller;
-    Tickets public ticketsContract;
+    ITickets public ticketsContract;
     uint256 public resaleTicketCount;
 
     struct ResaleTicket {
@@ -33,16 +34,19 @@ contract TicketResale {
         uint256 _feePercent
     ) public pure returns (uint256) {
         require(_feePercent <= 100, "Fee percentage cannot be more than 100");
-        return (_price + (_price * _feePercent) / 100); 
+        return (_price + (_price * _feePercent) / 100);
     }
 
     function listResaleTickets(uint256 _ticketId, uint256 _feePrecent) public {
+        ITickets.Ticket memory ticket = ticketsContract.getTicketById(
+            _ticketId
+        );
         ResaleTicket memory resaleTicket = ResaleTicket(
             _ticketId,
-            ticketsContract.getTicketById(_ticketId).name,
-            ticketsContract.getTicketById(_ticketId).category,
+            ticket.name,
+            ticket.category,
             calculateResalePrice(
-                ticketsContract.getTicketById(_ticketId).price,
+                ticket.price,
                 _feePrecent
             )
         );
@@ -50,6 +54,4 @@ contract TicketResale {
         resaleTicketCount++;
         resaleTickets[resaleTicketCount] = resaleTicket;
     }
-
-
 }

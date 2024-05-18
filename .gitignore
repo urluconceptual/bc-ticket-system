@@ -63,3 +63,7 @@ yarn-error.log*
 
 # Hardhat Ignition default folder for deployments against a local node for version2.0
 /version2.0/ignition/deployments/chain-31337
+version2.0/package-lock.json
+version2.0/package-lock.json
+cache/solidity-files-cache.json
+/artifacts

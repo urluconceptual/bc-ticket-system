@@ -6,14 +6,6 @@ import "./interfaces/ITickets.sol";
 contract Tickets is ITickets {
     address public owner;
 
-    struct Ticket {
-        uint256 id;
-        string name;
-        string category;
-        uint256 price;
-        uint256 stock;
-    }
-
     struct Order {
         uint256 time;
         Ticket ticket;
