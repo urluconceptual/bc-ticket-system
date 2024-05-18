@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+# 🎫 Ticket-system
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+  Ticket-system is a project designed for a blockchain optional course. It offers a platform for buying and selling tickets for both cinema and theater events. Using smart contracts and web3 technologies, we implemented a store that allows users browse available tickets and purchase them securely with cryptocurrency via Metamask. 
 
-In the project directory, you can run:
+## Technologies Used
 
-### `npm start`
+- Solidity
+- Ethers.js
+- React
+- Hardhat
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Smart Contract Implementation
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Tickets
 
-### `npm test`
+  The Tickets contract's main purpose is to facilitate ticket management. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Key Features:**
+ 1. Listing Tickets: The owner can list available tickets on the platform, providing information such as ID, name, category, price and stock. 
+ 2. Purchasing Tickets: A user can log in with their Metamask account and buy tickets to the events using cryptocurrency. 
+ 3. Withdrawal of Funds: The contract owner can withdraw the funds from ticket sales.
+  
+**Testing:**
+  For this contract we implemented a handful of tests that ensure that the functionalities of the ticket contract work as expected. 
 
-### `npm run build`
+### Resale Tickets 
+  This contract allows the resale of tickets on the platform. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Key Fatures:**
+  1. Resale Ticket Listing: Ticket owners can list their tickets for resale by providing the Id of the ticket and the resale fee procentage. 
+  2. Resale Price Calculation: The contracts helps calculate the new price at which the ticket is going to be sold. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Interacting with the Blockchain through a Web3 Application
+  For our ticket-system project we chose to use React and Ethers.js to interact with the Ethereum blockchain. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Key Features:**
+- React: We used React to build the user interface for a dymanic and responsive experience.
+- ethers.js: We opted to use ethers.js for connecting to the Ethereum blockchain, interacting with the smart contracts and handling transactions. 
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Running the Project 
+ 1. **Run Hardhat Network:**
+`npx hardhat node`
+ 2. **Deploy the Smart Contract:**
+`npx hardhat run ./scripts/deploy.js --network localhost`
+ 3. **Run the Web Application:**
+`npm run start`
+ 4. **Run the Tests:**
+`npx hardhat test`
