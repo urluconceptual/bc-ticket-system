@@ -13,4 +13,5 @@ interface ITickets {
     function buy(uint256 _id) external payable;
 
     function withdraw() external;
+    
 }

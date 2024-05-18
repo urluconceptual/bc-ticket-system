@@ -63,6 +63,15 @@ describe("Ticket-system", () => {
     it("Emits List event", () => {
       expect(transaction).to.emit(ticketsContract, "List"); 
     })
+
+    it("Gets ticket by ID", async () => {
+      const ticket = await ticketsContract.getTicketById(ID);
+      expect(ticket.id).to.equal(ID);
+      expect(ticket.name).to.equal(NAME);
+      expect(ticket.category).to.equal(CATEGORY);
+      expect(ticket.price).to.equal(PRICE);
+      expect(ticket.stock).to.equal(STOCK);
+    })
   })
 
   describe("Buying", () => {
